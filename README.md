@@ -6,7 +6,6 @@ A custom Dicord bot created using C# and Discord.Net that provides users with th
 * **Discord Slash Commands:** Uses modern features for an easy and clean user expeience without the hassle of remembering commands.
 
 ## Planned Features
-* Loot Pool Query (e.g, `/lootpool` or `/loot <weapon>`)
 * Notification system for map changes.
 
 ## Setup and Installation
@@ -21,6 +20,7 @@ All commands are Slash Commands (`/`) and will appear as you type.
 | Command | Description | Example |
 | :--- | :--- | :--- |
 | `/map` | Displays the current Fortnite Battle Royale map with Points of Interest (POIs). | `/map` |
+| `/shop` | Displays the current Item Shop. | `/shop` |
 
 ## Developer Setup (C#)
 
