@@ -12,6 +12,7 @@ A custom Dicord bot created using C# and Discord.Net that provides users with th
 1. **Download Files:** Please download by ZIP.
 2. **Bot Token::** If you are running your own instance, you must obtain your own key from the Discord Developer Portal and paste it into `appsettings.json` along with your server ID.
 3. **Run the Excecutable** Double-CLick the exe file (`FNMapAndLootPoolBot.exe`)
+* **Disclaimer: Excecutable is not available as of yet, I am hoping to create it when I feel like the bot is ready.**
 
 ## Bot Commands
 
