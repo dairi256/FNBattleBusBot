@@ -6,13 +6,13 @@ A custom Dicord bot created using C# and Discord.Net that provides users with th
 * **Discord Slash Commands:** Uses modern features for an easy and clean user expeience without the hassle of remembering commands.
 
 ## Planned Features
-* Loot Pool Query (e.g, `/lootpool` or `/loot <weapon>`)
 * Notification system for map changes.
 
 ## Setup and Installation
 1. **Download Files:** Please download by ZIP.
 2. **Bot Token::** If you are running your own instance, you must obtain your own key from the Discord Developer Portal and paste it into `appsettings.json` along with your server ID.
 3. **Run the Excecutable** Double-CLick the exe file (`FNMapAndLootPoolBot.exe`)
+* **Disclaimer: Excecutable is not available as of yet, I am hoping to create it when I feel like the bot is ready.**
 
 ## Bot Commands
 
@@ -21,6 +21,8 @@ All commands are Slash Commands (`/`) and will appear as you type.
 | Command | Description | Example |
 | :--- | :--- | :--- |
 | `/map` | Displays the current Fortnite Battle Royale map with Points of Interest (POIs). | `/map` |
+| `/shop` | Displays the current Item Shop. | `/shop` |
+* Disclaimer: `/shop` is not working due to an issue. I will fix this as soon as I can.
 
 ## Developer Setup (C#)
 
@@ -37,3 +39,5 @@ This project uses **C#** and the **.NET 9.0**, however, I will also be consideri
     * Add your `DiscordToken` and `TestGuildId`.
 
 4.  **Run:** Launch the project in Visual Studio (F5).
+
+### This project is licensed under the MIT License. Read `LICENSE` for more information.
