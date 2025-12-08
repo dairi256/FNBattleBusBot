@@ -1,4 +1,7 @@
-# Fortnite Battle Bus Bot  ![Static Badge](https://img.shields.io/badge/IN%20DEVELOPMENT-081461?style=for-the-badge)
+# Fortnite Battle Bus Bot  ![Static Badge](https://img.shields.io/badge/IN%20DEVELOPMENT-081461?style=for-the-badge) ![GitHub branch status](https://img.shields.io/github/checks-status/dairi256/FNBattleBusBot/master?style=for-the-badge)
+
+
+
 A custom Dicord bot created using C# and Discord.Net that provides users with the current map of the season and the current loot pool.
 
 ## Features
@@ -22,6 +25,8 @@ All commands are Slash Commands (`/`) and will appear as you type.
 | :--- | :--- | :--- |
 | `/map` | Displays the current Fortnite Battle Royale map with Points of Interest (POIs). | `/map` |
 | `/shop` | Displays the current Item Shop. | `/shop` |
+
+**Please Note:** All information is currently retreived via Fortnite-API.com. You can check their API Documentation here: https://dash.fortnite-api.com/
 
 ## Developer Setup (C#)
 
