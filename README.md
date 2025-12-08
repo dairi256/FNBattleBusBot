@@ -23,6 +23,8 @@ All commands are Slash Commands (`/`) and will appear as you type.
 | `/map` | Displays the current Fortnite Battle Royale map with Points of Interest (POIs). | `/map` |
 | `/shop` | Displays the current Item Shop. | `/shop` |
 
+**Please Note:** All information is currently retreived via Fortnite-API.com. You can check their API Documentation here: https://dash.fortnite-api.com/
+
 ## Developer Setup (C#)
 
 This project uses **C#** and the **.NET 9.0**, however, I will also be considering changing to **.NET 10.0**.
