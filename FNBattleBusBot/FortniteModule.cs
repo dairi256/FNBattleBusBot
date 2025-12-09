@@ -88,7 +88,7 @@ public class FortniteModule : InteractionModuleBase<SocketInteractionContext>
     }
 
     [SlashCommand("status", "Displays the status of the Fortnite servers.")]
-    public async Task GetWeaponCommand()
+    public async Task GetStatusCommand()
     {
         await DeferAsync(ephemeral: false);
 
