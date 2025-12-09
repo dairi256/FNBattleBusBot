@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class FortniteApiService
 {
@@ -10,6 +11,7 @@ public class FortniteApiService
 
     private const string ShopEndpoint = "https://fortnite-api.com/v2/shop?language=en";
     private const string MapEndpoint = "https://fortnite-api.com/v1/map";
+    private const string StatusEndpoint = "https://status.epicgames.com/api/v2/summary.json"; // This is the status endpoint
 
     public async Task<string> GetMapImageUrlAsync()
     {
@@ -104,6 +106,40 @@ public class FortniteApiService
         return items;
     }
 
+    public async Task<EpicGamesStatus> GetServiceStatusAsync()
+    {
+        try
+        {
+            var response = await _httpClient.GetAsync(StatusEndpoint);
+            var jsonString = await response.Content.ReadAsStringAsync();
+
+            var statusResponse = JsonSerializer.Deserialize<EpicStatusResponse>(
+                jsonString,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+            );
+
+            if (statusResponse.Status != null)
+            {
+                return new EpicGamesStatus
+                {
+                    Indicator = statusResponse.Status.Indicator,
+                    Description = statusResponse.Status.Description,
+                    Components = statusResponse.Components,
+                    HasIncidents = statusResponse.Incidents?.Count > 0,
+                    IncidentCount = statusResponse.Incidents?.Count ?? 0
+                };
+            }
+            return null;
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Status API Error: {ex.Message}");
+            return null;
+        }
+        
+    }
+
 }
 
 public class ShopItem
@@ -168,4 +204,43 @@ public class FortniteShopResponse
     public int Status { get; set; }
     public ShopData Data { get; set; }
 }
+
+// Classes for Epic Games Status API
+public class EpicGamesStatus
+{
+    public string Indicator { get; set; }
+    public string Description { get; set; }
+    public List<StatusComponent> Components { get; set; }
+    public bool HasIncidents { get; set; }
+    public int IncidentCount { get; set; }
+}
+
+public class StatusComponent
+{
+    public string Id { get; set; }
+    public string Name { get; set; }
+    public string Status { get; set; }
+}
+
+public class StatusInfo
+{
+    public string Indicator { get; set; }
+    public string Description { get; set; }
+}
+
+public class StatusIncident
+{
+    public string Name { get; set; }
+    public string Status { get; set; }
+    public string Impact { get; set; }
+}
+
+public class EpicStatusResponse
+{
+    public StatusInfo Status { get; set; }
+
+    public List<StatusComponent> Components { get; set; }
+    public List<StatusIncident> Incidents { get; set; }
+}
+
 

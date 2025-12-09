@@ -86,4 +86,81 @@ public class FortniteModule : InteractionModuleBase<SocketInteractionContext>
             await FollowupAsync($"An error occurred while fetching the shop data: {ex.Message}", ephemeral: false);
         }
     }
+
+    [SlashCommand("status", "Displays the status of the Fortnite servers.")]
+    public async Task GetWeaponCommand()
+    {
+        await DeferAsync(ephemeral: false);
+
+        var status = await _apiService.GetServiceStatusAsync();
+
+        if (status == null)
+        {
+            await FollowupAsync("Failed to fetch the server status. Please try again later or contact a developer for support.");
+            return;
+        }
+
+        var embed = new EmbedBuilder()
+            .WithTitle("Epic Games Server Status")
+            .WithColor(GetColorFromIndicator(status.Indicator))
+            .WithDescription($"**{status.Description}**")
+            .WithCurrentTimestamp();
+
+        var fortniteComponents = status.Components
+            .Where(c => c.Name.Contains("Fortnite", StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        if(fortniteComponents.Any())
+        {
+            foreach (var component in fortniteComponents)
+            {
+                string statusEmoji = GetEmojiFromStatus(component.Status);
+                string formattedStatus = component.Status.Replace("_", " ");
+                embed.AddField(component.Name, $"{statusEmoji} {char.ToUpper(formattedStatus[0]) + formattedStatus.Substring(1)}", inline: true);
+            }
+        }
+        else
+        {
+            foreach (var component in status.Components.Take(10))
+            {
+                string statusEmoji = GetEmojiFromStatus(component.Status);
+                string formattedStatus = component.Status.Replace("_", " ");
+                embed.AddField(component.Name, $"{statusEmoji} {char.ToUpper(formattedStatus[0]) + formattedStatus.Substring(1)}", inline: true);
+            }
+        }
+
+        if (status.HasIncidents)
+        {
+            embed.AddField("Active Incidents: ", $"{status.IncidentCount} incident(s) currently active.", inline: false);
+        }
+
+        embed.WithFooter("Status via status.epicgames.com");
+
+        await FollowupAsync(embed: embed.Build());
+
+    }
+
+    private Color GetColorFromIndicator(string indicator)
+    {
+        return indicator switch
+        {
+            "none" => Color.Green,
+            "minor" => Color.Gold,
+            "major" => Color.Orange,
+            "critical" => Color.Red,
+            _ => Color.LighterGrey,
+        };
+    }
+
+    private string GetEmojiFromStatus(string status)
+    {
+        return status switch
+        {
+            "operational" => "🟢",
+            "degraded_performance" => "🟡",
+            "partial_outage" => "🟠",
+            "major_outage" => "🔴",
+            _ => "⚪"
+        };
+    }
 }
