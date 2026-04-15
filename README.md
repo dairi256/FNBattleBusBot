@@ -2,7 +2,7 @@
 
 
 
-A custom Dicord bot created using C# and Discord.Net that provides users with the related Fortnite commands.
+A custom Discord bot created using C# and Discord.Net that provides users with the related Fortnite commands.
 
 ## Features
 * **Discord Slash Commands:** Uses modern features for an easy and clean user expeience without the hassle of remembering commands.
