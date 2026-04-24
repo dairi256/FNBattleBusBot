@@ -2,7 +2,7 @@
 
 
 
-A custom Discord bot created using C# and Discord.Net that provides users with related Fortnite commands including displaying maps, the current shop, and more!.
+A custom Discord bot created using C# and Discord.Net that provides users with related Fortnite commands including displaying maps, the current shop, and more!
 
 ## Features
 * **Discord Slash Commands:** Uses modern features for an easy and clean user expeience without the hassle of remembering commands.
